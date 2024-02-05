@@ -105,10 +105,6 @@ header {
     display: none;
   }
 }
-<<<<<<< HEAD
-@media screen and (min-width: 768px) {
-  .nav {
-=======
 
 .head-button{
     background-color: green;
@@ -129,10 +125,8 @@ header {
 .header-content{
     max-width: 1280px;
     margin: 0 auto;
->>>>>>> 8dc4e7da0fd2dc728d011043b3b171dec54dd357
     display: flex;
   }
-}
 
 .nav-link {
   color: #718096;
@@ -740,8 +734,6 @@ ul {
     grid-template-columns: repeat(2, 1fr);
   }
 }
-<<<<<<< HEAD
-=======
 
 @media screen and (max-width:850px) {
     .footer-top{
@@ -751,4 +743,3 @@ ul {
         grid-template-columns: repeat(2,1fr);
     }
 }
->>>>>>> 8dc4e7da0fd2dc728d011043b3b171dec54dd357
