@@ -117,6 +117,10 @@ a {
   margin: 1rem 0;
 }
 
+.sidebar.active .user{
+  padding-left: 12px;
+}
+
 .user p {
   color: #00000000;
   opacity: 0;
