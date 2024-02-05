@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgriTech | Precise Farming Revolution</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <link rel="icon" href="/static/images/logo.png">
+    <meta name="title" content="Agritech | Home">
+    <meta name="keywords" content="agritech, precise, farming Revolution, agriculture">
+    <script src="static/script.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha384-GLhlTQ8iNl6UuMz9MmtHWI5Izjg4nqtVhA4f5+9v6tqUstC4p4E4lqY4zB+EMl/n" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css">
+</head>
+<body>
+    <div class="header">
+
+        <header class="header-content">
+
+            <a href="#logo" class="logo">
+                <img src="/static/images/logo.png" alt="logoImage" class="logo-icon" />
+                <span class="logo-text">AgriTech</span>
+            </a>
+
+            <nav class="nav">
+                <a href="#" class="nav-link">Home</a>
+                <a href="#features" class="nav-link">Features</a>
+                <a href="#ftr" class="nav-link">About</a>
+                <a href="#feedback" class="nav-link">Feedback</a>
+
+            </nav>
+
+            <div id="menu-btn">
+                <i class="fas fa-bars"></i>
+            </div>
+
+            <a id="head-btn" href="/{{ method }}">
+                <button class="head-button">
+                    {{ user }}
+                </button>
+            </a>
+        </header>
+
+    </div>
+
+    <div class="content">
+        <section class="main-section">
+
+            <div class="content-left">
+                <h1 class="section-title">Precision Farming Revolution: Smart Sensor Technology </h1>
+                <p class="section-description">
+                    Welcome to the future of agriculture! Our cutting-edge sensor technology empowers farmers with real-time insights to predict and optimize the levels of essential nutrients. Embrace the evolution of farming with our advanced agricultural technology, paving the way for smarter, more efficient farming practices.
+                </p>
+                <div class="button-group">
+                    <a href="/userDashboard" class="start-button">Start Now</a>
+                </div>
+            </div>
+            
+            <div class="content-right">
+                <div class="image-container" id="img-slider">
+                    <img src="/static/images/hero-img.png" alt="sectionImage" class="section-image" />
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <div class="feature-container" id="features">
+        <div class="feature-content">
+            <div class="main-info">
+                <h2 class="main-title">
+                    Our competitive advantage
+                </h2>
+                <p class="main-description">
+                    Our main advantage lies in delivering precise and real-time data on crucial environmental metrics, such as moisture and humidity, directly to farmers. By providing actionable insights, we empower farmers to make informed decisions, optimize their agricultural practices, and maximize crop yields.
+                </p>
+            </div>
+            
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="icon-container">
+                        <img class="feature-svg" src="/static/images/PersonalizedLearn.svg"/>
+                    </div>
+                    <div class="feature-info">
+                        <div class="feature-title">
+                            Personalized 
+                        </div>
+                        <div class="feature-description">
+                            Offer tailored learning experiences through AI and machine learning to cater to individual student needs.
+                        </div>
+                    </div>
+                </div>
+                <div class="feature-card">
+                    <div class="icon-container">
+                        <img class="feature-svg" src="/static/images/Affordability.svg"/>
+                    </div>
+                    <div class="feature-info">
+                        <div class="feature-title">
+                            Affordability
+                        </div>
+                        <div class="feature-description">
+                            Provide high-quality technology at an affordable price point, making it accessible to a broader audience.
+                        </div>
+                    </div>
+                </div>
+                <div class="feature-card">
+                    <div class="icon-container">
+                        <img class="feature-svg" src="/static/images/InnovativeTech.svg"/>
+                    </div>
+                    <div class="feature-info">
+                        <div class="feature-title">
+                            Innovative Technology
+                        </div>
+                        <div class="feature-description">
+                            Utilize cutting-edge technology, such as augmented reality and highly advanced tools, to create immersive experiences.
+                        </div>
+                    </div>
+                </div>
+                <div class="feature-card">
+                    <div class="icon-container">
+                        <img class="feature-svg" src="/static/images/Analytics.svg"/>
+                    </div>
+                    <div class="feature-info">
+                        <div class="feature-title">
+                            Analytics and Insights
+                        </div>
+                        <div class="feature-description">
+                            Offer detailed analysis to help farmers and others to monitor performance and make data-driven decisions.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <section class="newsletter" id="feedback">
+        <div class="form">
+            <form action="https://api.web3forms.com/submit" method="POST">
+                
+                <h3>Feedback Form</h3>
+                <input type="hidden" name="access_key" value="f3e707ca-6f48-49d2-b7ca-c553f8f05fa6">    
+                <input type="text" name="name" class="box" placeholder="Enter your Name" required>
+                <input type="email" name="email" class="box" placeholder="Enter your email" required>
+                <textarea name="message" class="box" placeholder="Give your Feedback " required></textarea>
+                <p id="thanks"></p>
+                <button type="submit" class="news-btn" onclick="thanks()">Submit</button>
+            </form>
+        </section>
+        </div>
+
+        <div class="footer-container" class="footer-grid" id="ftr">
+            <footer class="footer">
+                <div class="footer-top">
+                    <div class="comp-logo">
+                        <a class="logo-link" href="#">
+                            <img class="logo-svg" src="/static/images/logo.png"/>
+                            AgriTech
+                        </a>
+                    </div>
+    
+                    <p class="filler-text">Precision Farming Revolution</p>
+                    <div class="social">
+    
+                            <a class="social-link" href="#">
+                                <img src="/static/images/instagram.svg" class="social-icon" />
+                            </a>
+                            <a class="social-link">
+                                <img src="/static/images/linkedin.svg" class="social-icon" />
+                            </a>
+                            <a class="social-link">
+                                <img src="/static/images/Microsoft.svg" class="social-icon" />
+                            </a>
+                            <a class="social-link">
+                                <img src="/static/images/twitter.svg" class="social-icon" />
+                            </a>
+                    </div>
+                </div>
+    
+                <div class="footer-grid">
+                    <div class="footer-grid-column">
+                                <div class="footer-grid-heading">
+                                    Products
+                                </div>
+                                <ul class="footer-links-list">
+                                    <li>
+                                        <a href="#features" class="footer-link">Features</a>
+                                    </li>
+                                    <li>
+                                        <a href="dashboard.html" class="footer-link">Solutions</a>
+                                    </li>
+                                </ul>
+                    </div>
+                            <!-- column 2 -->
+                    <div class="footer-grid-column">
+                                <div class="footer-grid-heading">
+                                    Company
+                                </div>
+                                <ul class="footer-links-list">
+                                    <li>
+                                        <a href="#" class="footer-link">AgriTech</a>
+                                    </li>
+                                    <li>
+                                        <a href="https://www.chitkara.edu.in" class="footer-link">Chitkara</a>
+                                    </li>
+                                </ul>
+                    </div>
+                            <!-- column 3 -->
+                    <div class="footer-grid-column">
+                                <div class="footer-grid-heading">
+                                    Support
+                                </div>
+                                <ul class="footer-links-list">
+                                    <li>
+                                        <a href="tel:+7973789157" class="footer-link">Contact Us</a>
+                                    </li>
+                                    <li>
+                                        <a href="mailto:pardume638.be22@chitkara.edu.in" class="footer-link">Mail Us</a>
+                                    </li>
+                                </ul>
+                    </div>
+                    <div class="footer-grid-column">
+                        <div class="footer-grid-heading">
+                            Legal
+                        </div>
+                        <ul class="footer-links-list">
+                            <li>
+                                <a href="" class="footer-link">Terms of Services</a>
+                            </li>
+                            <li>
+                                <a href="" class="footer-link">Copyright</a>
+                            </li>
+                        </ul>
+            </div>
+                </div>
+            </footer>
+            <div class="footer-copyright">
+                © 2024 - Present AgriTech. All rights reserved.
+            </div>
+        </div>
+
+        <script src="/static/script.js"></script>
+</body>
+</html>

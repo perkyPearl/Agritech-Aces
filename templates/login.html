@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgriTech | Login</title>
+    <link rel="icon" href="../static/images/logo.png">
+    <link rel="stylesheet" href="../static/login-signup.css">
+    <link rel="stylesheet" href="../static/style.css">
+    <style>
+        .head-button {
+            display: none;
+        }
+
+        .error{
+            outline: 2px solid red;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <div class="header-content">
+            <a href="/" class="logo">
+                <img src="/static/images/logo.png" alt="Logo icon" class="logo-icon">
+                <span class="logo-text">
+                    AgriTech
+                </span>
+            </a>
+
+            <nav class="nav">
+                <a href="/" class="nav-link">Home</a>
+                <a href="/" class="nav-link">Features</a>
+                <a href="/" class="nav-link">Feedback</a>
+                <a href="/" class="nav-link">About</a>
+            </nav>
+
+            <a href="/{{ method }}">
+                <button class="head-button">
+                    Login/Sign Up
+                </button>
+            </a>
+
+            <div class="nav-mobile">
+                <a href="#" id="nav-toggle">
+                    <span></span>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <h2>Login</h2>
+        <form id="loginForm" method="post">
+            <input type="text" id="username" placeholder="Username" required name="username" value="{{ username }}" class=" {{ isVerified[0] }} ">
+            <input type="password" id="password" placeholder="Password" required name="password" value="{{ password }}" class=" {{ isVerified[1] }} ">
+            <button type="submit">Login</button>
+            <div class="signin">
+                <p>Don't have an account <a href="/signup">Sign up</a></p>
+            </div>
+            <center>
+                <div class="forgot">
+                    <a href="forgot.html">Forgot Password?</a>
+                </div>
+            </center>
+        </form>
+    </div>
+
+</body>
+
+</html>

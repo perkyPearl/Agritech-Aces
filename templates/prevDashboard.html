@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <!-- Important Scipts -->
+    <script src="https://cdn.plot.ly/plotly-2.27.1.min.js" charset="utf-8"></script>
+
+    <link rel="stylesheet" href="../static/sidebar.css">
+</head>
+
+<body>
+    <div class="sidebar">
+        <div class="top">
+            <div class="logo">
+                <p>AgriTech</p>
+                 <img src="../static/images/logo.png" alt="logo"> 
+            </div>
+            <i class="bx bx-menu" id="btn"></i>
+        </div>
+        <div class="user">
+            <img src="../static/images/user.png" alt="user" class="user-img">
+            <div class="user-name">
+                <p>{{ user }}</p>
+            </div>
+        </div>
+        <ul>
+            <li>
+                <a href="/userDashboard">
+                    <i class="bx bxs-grid-alt"></i>
+                    <span class="nav-item">Dashboard</span>
+                </a>
+                <span class="tooltip">Dashboard</span>
+            </li>
+            <li> <a href="/history">
+                <i class="bx bx-history"></i>
+                <span class="nav-item">History</span>
+            </a>
+            <span class="tooltip">History</span>
+        </li>
+            <li>
+                <a href="/guide">
+                <i class='bx bx-book-content'></i>
+            <span class="nav-item">Guide</span>
+            </a>
+            <span class="tooltip">Guide</span>
+        </li>
+            <li>
+                <a href="/logout">
+                    <i class='bx bx-log-out' ></i>
+                <span class="nav-item">Logout</span>
+                </a>
+                <span class="tooltip">Logout</span>
+            </li>
+        </ul>
+    </div>
+
+    <div class="main-content">
+        <div class="container"> 
+            <div class="head">
+            <h1>Analysis of {{ date }}:</h1></div>
+            <div class="GraphArea">
+                <div id="chart"></div>
+                <div class="Suggestion-Container">
+                    <h1>Suggestions: </h1>
+                    <div class="Suggestion-Box">
+                        <li>Put Some Water in the Soil</li>
+                    </div>
+                    <div class="button-container">
+                        <button onclick="fetchRealtimeData()">Fetch Real-time Data</button>
+                    </div>
+                </div>
+            </div>
+            <div class="cards">
+                <div class="Temperature card">
+                    <p>Temperature</p>
+                    <div class="Temperature-progress">
+                        <div class="Temperature-value">Nan</div>
+                    </div>
+                    <div class="Temperature-condition">NAN
+                    </div>
+                </div>
+                <div class="Humidity card">
+                    <p>Humidity</p>
+                    <div class="Humidity-progress">
+                        <div class="Humidity-value">Nan</div>
+                    </div>
+                    <div class="Humidity-condition">NAN
+                    </div>
+                </div>
+                <div class="Moisture card">
+                    <p>Moisture</p>
+                    <div class="Moisture-progress">
+                        <div class="Moisture-value">Nan</div>
+                    </div>
+                    <div class="Moisture-condition">NAN
+                    </div>
+                </div>
+            </div>
+            <div class="result">
+        </div>
+        </div>
+    </div>
+</body>
+<script>
+    var jsonData = {{ data | tojson | safe }};
+</script>
+<script>
+    let btn=document.querySelector('#btn');
+    let sidebar=document.querySelector('.sidebar');
+    btn.onclick=function(){
+        sidebar.classList.toggle('active') };
+</script>
+<script src="../static/prevData.js"></script>
+<script src="../static/script.js"></script>
+</html>

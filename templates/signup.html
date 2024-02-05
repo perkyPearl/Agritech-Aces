@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgriTech | Login</title>
+    <link rel="icon" href="../static/images/logo.png">
+    <link rel="stylesheet" href="../static/login-signup.css">
+    <link rel="stylesheet" href="../static/style.css">
+    <style>
+        .error{
+            outline: 2px solid red;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="header-content">
+            <a href="" class="logo">
+                <img src="/static/images/logo.png" alt="Logo icon" class="logo-icon">
+                <span class="logo-text">
+                    AgriTech
+                </span>
+            </a>
+
+            <nav class="nav">
+                <a href="#" class="nav-link">Home</a>
+                <a href="#features" class="nav-link">Features</a>
+                <a href="#feedback" class="nav-link">Feedback</a>
+                <a href="#footer" class="nav-link">About</a>
+            </nav>
+
+            <a href="/{{ method }}" style="display: none;">
+                <button class="head-button">
+                    Login/Sign Up
+                </button>
+            </a>
+
+            <div class="nav-mobile">
+                <a href="#" id="nav-toggle">
+                    <span></span>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <h2>Signup</h2>
+        <form id="signupForm" method="post">
+          <input type="text" placeholder="First Name" id="firstname" name="firstname" required>
+          <input type="text" placeholder="Last Name" id="lastname" name="lastname" required>
+          <input type="text" placeholder="Enter E-mail" id="email" name="email" required>
+          <input type="number" placeholder="Enter Phone Number" name="phoneNumber" id="phoneNumber">
+          <input type="text" id="username" placeholder="Username" required name="username">
+          <input type="password" id="password" placeholder="Password" required name="password">
+          <button type="submit">Sign up</button>
+        </form>
+      </div>
+</body>
+</html>

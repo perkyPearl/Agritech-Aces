@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="../static/sidebar.css">
+    <style>
+        .main-content {
+            background-image: url("../static/images/Background.jpeg");
+            background-size: cover;
+        }
+
+        * {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        h1{
+            text-align: center;
+            padding: 20px;
+        }
+
+        table {
+            margin: auto;
+            margin-top: 50px;
+            background-color: #0080005d;
+            border-radius: 5px;
+            border: 2px solid black;
+            width: 50%;
+        }
+
+        tr th {
+            background-color: black;
+            color: white;
+        }
+
+        td,
+        th {
+            border: 2px solid black;
+            text-align: center;
+            width: 20px;
+        }
+
+        a {
+            text-decoration: none;
+            color: black;
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <div class="top">
+            <div class="logo">
+                <p>AgriTech</p>
+                 <img src="../static/images/logo.png" alt="logo"> 
+            </div>
+            <i class="bx bx-menu" id="btn"></i>
+        </div>
+        <div class="user">
+            <img src="../static/images/user.png" alt="user" class="user-img">
+            <div class="user-name">
+                <p>{{ user }}</p>
+            </div>
+        </div>
+        <ul>
+            <li>
+                <a href="/userDashboard">
+                    <i class="bx bxs-grid-alt"></i>
+                    <span class="nav-item">Dashboard</span>
+                </a>
+                <span class="tooltip">Dashboard</span>
+            </li>
+            <li> <a href="/history">
+                <i class="bx bx-history"></i>
+                <span class="nav-item">History</span>
+            </a>
+            <span class="tooltip">History</span>
+        </li>
+            <li>
+                <a href="/guide">
+                <i class='bx bx-book-content'></i>
+            <span class="nav-item">Guide</span>
+            </a>
+            <span class="tooltip">Guide</span>
+        </li>
+            <li>
+                <a href="/logout">
+                    <i class='bx bx-log-out' ></i>
+                <span class="nav-item">Logout</span>
+                </a>
+                <span class="tooltip">Logout</span>
+            </li>
+        </ul>
+    </div>
+    <div class="main-content">
+        <div class="container">
+            <table cellspacing="0">
+                <tr>
+                    <th>S No.</th>
+                    <th>Date</th>
+                </tr>
+                {% if Data %}
+                {% for i in range(n) %}
+                <tr>
+                    <td>{{ i+1 }}</td>
+                    <td><a href="/{{ Data[i] }}">{{ Data[i] }}</a></td>
+                </tr>
+                {% endfor %}
+                {% else %}
+                <tr>
+                    <td>1</td>
+                    <td>None</td>
+                </tr>
+                {% endif %}
+            </table>
+        </div>
+    </div>
+    <script>
+        let btn=document.querySelector('#btn');
+        let sidebar=document.querySelector('.sidebar');
+        btn.onclick=function(){
+            sidebar.classList.toggle('active') };
+    </script>
+</body>
+</html>

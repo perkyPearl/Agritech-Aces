@@ -1,0 +1,463 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@500&family=Poppins:wght@400;500&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Inter", sans-serif;
+}
+
+a {
+  text-decoration: none;
+}
+
+.head h1 {
+  padding: 10px;
+}
+
+.user .user-img {
+  width: 50px;
+  border-radius: 100%;
+  border: 1px solid #eee;
+  margin-left: 5px;
+}
+
+.bx-menu {
+  color: #eee;
+}
+
+.bx-menu.active {
+  background-color: #eee;
+  color: green;
+}
+
+.bx {
+  font-size: 20px;
+}
+
+.sidebar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 80px;
+  background-color: green;
+  padding: 0.4rem 0.8rem;
+  transition: all 0.5s ease;
+}
+
+.sidebar.active ~ .main-content {
+  left: 250px;
+  width: calc(100% - 250px);
+}
+
+.sidebar.active {
+  width: 250px;
+}
+
+.sidebar #btn {
+  position: absolute;
+  top: 0.4rem;
+  left: 50%;
+  font-size: 1.2rem;
+  line-height: 50px;
+  transform: translate(-50%);
+  cursor: pointer;
+}
+
+.sidebar.active #btn {
+  left: 90%;
+}
+
+.sidebar .top .png {
+  height: 50px;
+  width: 50px;
+}
+
+.sidebar ~ .logo {
+  display: flex;
+  height: 30px;
+  width: 100%;
+  color: #eee;
+  align-items: center;
+  pointer-events: none;
+  opacity: 0;
+}
+
+.sidebar .top .logo p {
+  color: #eee;
+  opacity: 0;
+}
+
+.sidebar.active .top .logo p {
+  opacity: 1;
+  color: #eee;
+  font-weight: 600;
+  font-size: 30px;
+  padding-left: 15px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.top .logo .img {
+  display: flex;
+}
+
+.top .logo i {
+  font-size: 2rem;
+  margin-right: 5px;
+}
+
+.user {
+  display: flex;
+  align-items: center;
+  margin: 1rem 0;
+}
+
+.user p {
+  color: #00000000;
+  opacity: 0;
+  margin-left: 1rem;
+}
+
+.sidebar.active .user p {
+  opacity: 1;
+  color: #eee;
+}
+
+.sidebar .active p {
+  opacity: 1;
+}
+
+.sidebar ~ .active span {
+  opacity: 0;
+}
+
+.sidebar ul li {
+  position: relative;
+  list-style-type: none;
+  height: 50px;
+  width: 90%;
+  margin: 0.8rem auto;
+  line-height: 50px;
+}
+
+.sidebar ul li a {
+  color: #eee;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  border-radius: 0.8rem;
+}
+
+.sidebar ul li a:hover {
+  background-color: #eee;
+  color: green;
+}
+
+.sidebar ul li a i {
+  min-width: 50px;
+  text-align: center;
+  height: 50px;
+  border-radius: 12px;
+  line-height: 50px;
+}
+
+.sidebar .nav-item {
+  opacity: 0;
+}
+
+.sidebar.active .nav-item {
+  opacity: 1;
+}
+
+.sidebar ul li .tooltip {
+  position: absolute;
+  left: 125px;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0.5rem 0.8rem rgba(0, 0, 0, 0.2);
+  border-radius: 0.6rem;
+  padding: 0.4rem 1.2rem;
+  line-height: 1.8rem;
+  z-index: 10;
+  opacity: 0;
+}
+
+.sidebar ul li:hover .tooltip {
+  opacity: 1;
+  background-color: #fff;
+}
+
+.sidebar.active ul li .tooltip {
+  display: none;
+}
+
+.main-content {
+  position: relative;
+  /* background-color: #fff; */
+  background-color: rgb(230, 255, 230);
+  min-height: 100vh;
+  top: 0;
+  left: 80px;
+  transition: all 0.5s ease;
+  width: calc(100% - 80px);
+  padding: 1rem;
+}
+
+.cards {
+  justify-content: center;
+  padding: 20px;
+  width: max-content;
+  display: flex;
+  flex-wrap: wrap;
+  /* width: 100%; */
+}
+
+.cards .card {
+  background-color: #fff;
+  height: 160px;
+  width: 250px;
+  font-size: 30px;
+  color: #eee;
+  margin: 10px;
+  border-radius: 13px;
+}
+
+.card:hover {
+  transform: scale(1.1);
+}
+
+.Temperature {
+  background-image: radial-gradient(
+    circle farthest-corner at -1% 57.5%,
+    rgba(19, 170, 82, 1) 0%,
+    rgba(0, 102, 43, 1) 90%
+  );
+  box-shadow: 3px 3px rgba(211, 202, 202, 0.397);
+  /* place-items: center; */
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: minmax(10px, auto);
+  grid-template-areas:
+    "p p p p "
+    "cir cir con con"
+    "cir cir j j";
+}
+
+.Temperature p {
+  grid-area: p;
+  margin: 10px;
+}
+
+.Temperature-progress {
+  margin-left: 10px;
+  position: relative;
+  height: 90px;
+  width: 90px;
+  border-radius: 50%;
+  background-color: #ffffff;
+  display: grid;
+  place-items: center;
+  grid-area: cir;
+}
+
+.Temperature-progress:before {
+  content: "";
+  position: absolute;
+  background-image: radial-gradient(
+    circle farthest-corner at -1% 57.5%,
+    rgba(19, 170, 82, 1) 0%,
+    rgba(0, 102, 43, 1) 90%
+  );
+  height: 80%;
+  width: 80%;
+  border-radius: 50%;
+}
+
+.Temperature-value {
+  position: relative;
+  font-family: "Inter", sans-serif;
+  font: bold;
+  font-size: 25px;
+  color: rgb(255, 255, 255);
+}
+
+.Temperature-condition {
+  grid-area: con;
+  font-size: 30px;
+  margin-top: 20px;
+}
+
+.Humidity {
+  background-image: radial-gradient(
+    circle farthest-corner at 30% 20%,
+    rgb(19, 174, 133) 10%,
+    rgb(6, 89, 91) 90%
+  );
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: minmax(10px, auto);
+  grid-template-areas:
+    "a a a a "
+    "hu hu con con"
+    "hu hu j j";
+}
+
+.Humidity p {
+  grid-area: a;
+  margin: 10px;
+}
+
+.Humidity {
+  position: relative;
+  font-family: "Inter", sans-serif;
+  font: bold;
+  color: rgb(255, 255, 255);
+}
+
+.Humidity-progress {
+  margin-left: 10px;
+  position: relative;
+  height: 90px;
+  width: 90px;
+  border-radius: 50%;
+  background-color: #eef3f3;
+  display: grid;
+  place-items: center;
+  grid-area: hu;
+}
+
+.Humidity-progress:before {
+  content: "";
+  position: absolute;
+  background-image: radial-gradient(
+    circle farthest-corner at 30% 20%,
+    rgb(19, 174, 133) 10%,
+    rgb(6, 89, 91) 90%
+  );
+  height: 80%;
+  width: 80%;
+  border-radius: 50%;
+}
+
+.Humidity-value {
+  position: relative;
+  font-family: "Inter", sans-serif;
+  font: bold;
+  font-size: 25px;
+  color: rgb(255, 255, 255);
+}
+
+.Humidity-condition {
+  grid-area: con;
+  font-size: 30px;
+  margin-top: 20px;
+}
+
+.Moisture {
+  background-image: radial-gradient(
+    circle farthest-corner at 10% 20%,
+    rgba(37, 145, 251, 0.98) 0.1%,
+    rgba(0, 6, 128, 0.822) 99.8%
+  );
+  box-shadow: 3px 3px rgba(184, 192, 182, 0.397);
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: minmax(10px, auto);
+  grid-template-areas:
+    "b b b b"
+    "mo mo con con"
+    "mo mo con con";
+}
+
+.Moisture-progress {
+  margin-left: 10px;
+  position: relative;
+  height: 90px;
+  width: 90px;
+  border-radius: 50%;
+  background-color: #eef3f3;
+  display: grid;
+  place-items: center;
+  grid-area: mo;
+}
+
+.Moisture p {
+  grid-area: b;
+  margin: 10px;
+}
+
+.Moisture-progress:before {
+  content: "";
+  position: absolute;
+  background-image: radial-gradient(
+    circle farthest-corner at 10% 20%,
+    rgba(37, 145, 251, 0.98) 0.1%,
+    rgba(0, 6, 128, 0.822) 99.8%
+  );
+  height: 80%;
+  width: 80%;
+  border-radius: 50%;
+}
+
+.Moisture-value {
+  position: relative;
+  font-family: "Inter", sans-serif;
+  font: bold;
+  font-size: 25px;
+  color: rgb(255, 255, 255);
+}
+
+.Moisture-condition {
+  grid-area: con;
+  font-size: 30px;
+  margin-top: 20px;
+}
+
+.card p {
+  margin-bottom: 2px;
+}
+
+.GraphArea{
+  display: flex;
+}
+
+.Suggestion-Container{
+  background-color: rgba(255, 255, 255, 0.541);
+  border-radius: 0px 15px 15px 0px;
+  width: 100%;
+  height: 100%;
+}
+
+.Suggestion-Container h1{
+  text-align: center;
+  margin-top: 30px;
+}
+
+.button-container{
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+}
+
+.Suggestion-Box {
+  height: 256px;
+  padding: 30px;
+  overflow: auto;
+}
+
+.Suggestion-Box h1 {
+  text-align: center;
+}
+
+.button-container button{
+  background-color: green;
+  color: white;
+  border: 0;
+  padding: 10px;
+  border-radius: 5px;
+}
