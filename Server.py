@@ -21,12 +21,15 @@ class Database:
     def getRealtimeData(user):
         current_date_time = datetime.now()
         formatted_date = current_date_time.strftime('%Y-%m-%d')
-        with open(path+ user + "\\" + formatted_date + ".csv", 'r') as file:
-            reader = csv.reader(file)
-            last_entry = None
-            for row in reader:
-                last_entry = row
-        return {"user":user,"data":last_entry}
+        try: 
+            with open(path+ user + "\\" + formatted_date + ".csv", 'r') as file:
+                reader = csv.reader(file)
+                last_entry = None
+                for row in reader:
+                    last_entry = row
+            return {"user":user,"data":last_entry}
+        except:
+            return {"user":user,"data":["12:00:00",-1,-1,-1]}
 
     def listData(user):
         return os.listdir(path+user)
@@ -44,7 +47,6 @@ class Database:
                 temp.append(int(row[1]))
                 humidity.append(int(row[2]))
                 moisture.append(int(row[3]))
-            
             ReadingsNeeded = 24
 
             DataPacket = {
@@ -85,7 +87,15 @@ def home():
 
 @socket.on("connect")
 def connected():
-    print("User Connected")
+    if "user" in session:
+        user = session["user"]
+        print(f"{user} Connected")
+    else:
+        print("Someone Connected")
+
+@socket.on("Disconnect")
+def disconnect():
+    print("Disconnected")
 
 @app.route("/login",methods=["POST","GET"])
 def login():
@@ -156,6 +166,19 @@ def history():
 def PrevData(date):
     user = session["user"]
     return render_template("prevDashboard.html",user=user,data=Database.DatabyDate(date,user),date=date.split(".")[0])
+
+@app.route("/inputNPKValues",methods = ["GET","POST"])
+def NPKValuesInp():
+    if request.method == "POST":
+        state = request.form["state"]
+        nitro = request.form["nitrogen"]
+        phos = request.form["phosphorus"]
+        potas = request.form["potassium"]
+
+        print(state,nitro,potas,phos)
+
+    user = session["user"]
+    return render_template("npkinput.html",user=user)
 
 @socket.on('fetchData')
 def RealtimeData():
