@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <script src="https://cdn.plot.ly/plotly-2.27.1.min.js" charset="utf-8"></script>
+    <link rel="stylesheet" href="../static/sidebar.css">
+    <style>
+        .main-content{
+            display: flex;
+            justify-content: center;
+        }
+        
+        .main-content form{
+            background-color: rgba(255, 255, 255, 0.553);
+            height: max-content;
+            padding: 30px;
+            border-radius: 15px;
+            margin: 50px;
+        }
+
+        form input, label, select{
+            margin: 2px 0px;
+            font-size: 20px;
+        }
+
+        select{
+            background-color: rgb(255, 255, 255);
+        }
+
+        form #submit{
+            background-color: green;
+            color: white;
+            border: none;
+            padding: 8px;
+            border-radius: 5px;
+            font-size: 18px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <div class="top">
+            <div class="logo">
+                <p>AgriTech</p>
+                <img src="../static/images/logo.png" alt="logo">
+            </div>
+            <i class="bx bx-menu" id="btn"></i>
+        </div>
+        <div class="user">
+            <img src="../static/images/user.png" alt="user" class="user-img">
+            <div class="user-name">
+                <p>{{ user }}</p>
+            </div>
+        </div>
+        <ul>
+            <li>
+                <a href="/userDashboard">
+                    <i class="bx bxs-grid-alt"></i>
+                    <span class="nav-item">Dashboard</span>
+                </a>
+                <span class="tooltip">Dashboard</span>
+            </li>
+            <li> <a href="/history">
+                    <i class="bx bx-history"></i>
+                    <span class="nav-item">History</span>
+                </a>
+                <span class="tooltip">History</span>
+            </li>
+            <li>
+                <a href="/guide">
+                    <i class='bx bx-book-content'></i>
+                    <span class="nav-item">Guide</span>
+                </a>
+                <span class="tooltip">Guide</span>
+            </li>
+            <li>
+                <a href="/logout">
+                    <i class='bx bx-log-out'></i>
+                    <span class="nav-item">Logout</span>
+                </a>
+                <span class="tooltip">Logout</span>
+            </li>
+        </ul>
+    </div>
+
+    <div class="main-content">
+        <form action="" method="post">
+            <div>
+                <label for="state">State: </label>
+                <div>
+                    <select name="state" id="state" required>
+                        <option value="">--Select the State--</option>
+                        <option value="ambala">Ambala</option>
+                        <option value="panchkula">Panchkula</option>
+                        <option value="Pinjore">Pinjore</option>
+                        <option value="punjab">Punjab</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <label for="nitrogen">Nitrogen: </label>
+                <div>
+                    <input type="number" name="nitrogen" id="nitrogen" required>
+                    <span>kg/Hector</span>
+                </div>
+            </div>
+            <div>
+                <label for="potassium">Potassium: </label>
+                <div>
+                    <input type="number" name="potassium" id="potassium" required>
+                    <span>kg/Hector</span>
+                </div>
+            </div>
+            <div>
+                <label for="phosphorus">Phosphorus: </label>
+                <div>
+                    <input type="number" name="phosphorus" id="phosphorus" required>
+                    <span>kg/Hector</span>
+                </div>
+            </div>
+            <center>
+                <input type="submit" value="Submit Data" id="submit">
+            </center>
+            </form>
+    </div>
+    <script src="../static/script.js"></script>
+</body>
+</html>
