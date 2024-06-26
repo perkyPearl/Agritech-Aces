@@ -13,6 +13,9 @@ import csv
 host = socket.gethostbyname(socket.gethostname())
 
 path = os.getcwd() + "\\DataBase\\"
+
+if "DataBase" not in os.listdir():
+    os.mkdir("DataBase")
 class Database:
     def createUser(user):
         if user not in os.listdir(path):

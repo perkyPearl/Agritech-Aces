@@ -11,21 +11,21 @@ let MoistureValueContainer = document.querySelector(".Moisture-value");
 let ResultBox = document.querySelector(".result");
 let SuggestionBox = document.querySelector(".Suggestion-Box");
 
-let SuggestionsArr = [];
+let SuggestionsArr = new Set();
 
 function temp(TemperatureValue) {
   let ele = document.querySelector(".Temperature");
   let con = document.querySelector(".Temperature-condition");
 
   if (TemperatureValue == -1) {
-    SuggestionsArr.push("Temperature Sensor is Offline!");
+    SuggestionsArr.add("Temperature Sensor is Offline!");
     ele.style.background =
       "radial-gradient( circle farthest-corner at 10% 20%,  rgba(247,87,0,1) 0%, rgba(249,0,0,1) 90.1% )";
   } else if (TemperatureValue > 24) {
     ele.style.background =
       "radial-gradient( circle farthest-corner at 10% 20%,  rgba(247,87,0,1) 0%, rgba(249,0,0,1) 90.1% )";
     con.textContent = "High";
-    SuggestionsArr.push(
+    SuggestionsArr.add(
       "Temperature is too high, Watering plants might help them to cool them down."
     );
   } else if (TemperatureValue < 10) {
@@ -44,7 +44,7 @@ function humi(HumidityValue) {
   let con = document.querySelector(".Humidity-condition");
 
   if (HumidityValue == -1) {
-    SuggestionsArr.push("Humidity Sensor is Offline!");
+    SuggestionsArr.add("Humidity Sensor is Offline!");
     ele.style.background =
       "radial-gradient( circle farthest-corner at 10% 20%,  rgba(247,87,0,1) 0%, rgba(249,0,0,1) 90.1% )";
   } else if (HumidityValue > 80) {
@@ -67,21 +67,21 @@ function moist(MoistureValue) {
   let con = document.querySelector(".Moisture-condition");
 
   if (MoistureValue == -1) {
-    SuggestionsArr.push("Moisture Sensor is Offline!");
+    SuggestionsArr.add("Moisture Sensor is Offline!");
     ele.style.background =
       "radial-gradient( circle farthest-corner at 10% 20%,  rgba(247,87,0,1) 0%, rgba(249,0,0,1) 90.1% )";
   } else if (MoistureValue >= 70) {
     ele.style.background =
       "radial-gradient( circle farthest-corner at 10% 20%,  rgba(247,87,0,1) 0%, rgba(249,0,0,1) 90.1% )";
     con.textContent = "High";
-    SuggestionsArr.push(
+    SuggestionsArr.add(
       "Moisture is too High, Too much water present in the Soil!"
     );
   } else if (MoistureValue < 20) {
     ele.style.background =
       "radial-gradient(circle farthest-corner at 30% 20%, rgba(255, 200, 12, 1.0) 0%, rgba(252, 150, 13, 1.0) 80%)";
     con.textContent = "Low";
-    SuggestionsArr.push("Moisture is too Low, Watering the Plants might help.");
+    SuggestionsArr.add("Moisture is too Low, Watering the Plants might help.");
   } else {
     ele.style.background =
       "radial-gradient( circle farthest-corner at 10% 20%,  rgba(37,145,251,0.98) 0.1%, rgba(0, 6, 128, 0.822) 99.8% )";
@@ -143,7 +143,7 @@ socket.on("DataRetrieve", function (data) {
     humi(HumidityValue);
     moist(MoistureValue);
     if (TemperatureValue == -1) {
-      SuggestionsArr.push("System Seems Offline");
+      SuggestionsArr.add("System Seems Offline");
     }
     TemperatureValueContainer.textContent = `${TemperatureValue}°C`;
     Temperature.style.background = `conic-gradient(
@@ -219,9 +219,9 @@ function fetchRealtimeData() {
   retriever = setInterval(() => {
     socket.emit("fetchData");
     if (count == 5) {
-      updateSuggestions(SuggestionsArr);
+      updateSuggestions(Array.from(SuggestionsArr));
       console.log(SuggestionsArr);
-      SuggestionsArr.length = 0;
+      SuggestionsArr.clear(); // Clear the Set for new suggestions
       count = 0;
     }
     count++;
