@@ -159,6 +159,12 @@ def user():
     else:
         return redirect(url_for("login"))
 
+@app.route("/test")
+def test():
+    session["user"] = "test"
+    user = session["user"]
+    return render_template("dashboard.html",user=user)
+
 @app.route('/history')
 def history():
     user = session["user"]
