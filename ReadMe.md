@@ -49,7 +49,7 @@ A real-time IoT-based soil analysis system designed to empower farmers with acti
 
 ## 📍 Presentation Link
 
-View the full project presentation here: [Canva Presentation](https://www.canva.com/your-ppt-link)
+View the full project presentation here: [Canva Presentation](https://www.canva.com/design/DAGUZzMTaY4/fuO9MAJ-_e5faTxo-IR8jg/edit?utm_content=DAGUZzMTaY4&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton)
 
 ---
 
