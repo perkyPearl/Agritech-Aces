@@ -16,7 +16,7 @@ A real-time IoT-based soil analysis system designed to empower farmers with acti
 * 🧠 Modular Python backend with Flask, WebSocket, and MongoDB
 * 📁 Historical reports (daily, weekly, monthly) automatically generated
 * 🔄 Crop comparison tool to evaluate soil compatibility
-* 🔒 Secure data handling with basic encryption and user-specific routing
+* 🔐 Secure data handling with basic encryption and user-specific routing
 
 ---
 
@@ -47,10 +47,9 @@ A real-time IoT-based soil analysis system designed to empower farmers with acti
 
 ---
 
-## 📸 Dashboard Preview
+## 📍 Presentation Link
 
-> *(Insert dashboard or UI screenshots here)*
-> Live graphs, radial dials for soil parameters, crop-specific recommendations, and historical visual trends.
+View the full project presentation here: [Canva Presentation](https://www.canva.com/your-ppt-link)
 
 ---
 
