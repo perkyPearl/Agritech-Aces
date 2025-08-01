@@ -11,9 +11,9 @@ def collectData():
     while True:
         try:
             csv_filepath = os.getcwd() + f'\\DataBase\\{userId}\\'+str(datetime.today().date())+'.csv'  
-            temp = random.randint(10,25)
-            humidity = random.randint(40,90)
-            moist = random.randint(10,99)
+            temp = random.randint(24,25)
+            humidity = random.randint(50,52)
+            moist = random.randint(80,90)
 
             timestamp = time.strftime('%Y-%d-%m %H:%M:%S')
 

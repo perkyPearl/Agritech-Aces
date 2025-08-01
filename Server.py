@@ -5,6 +5,7 @@ from flask_cors import CORS
 from datetime import datetime
 from pymongo import MongoClient
 from flask_pymongo import PyMongo
+import Model
 import MongoStuff
 import os
 import socket
@@ -16,6 +17,7 @@ path = os.getcwd() + "\\DataBase\\"
 
 if "DataBase" not in os.listdir():
     os.mkdir("DataBase")
+
 class Database:
     def createUser(user):
         if user not in os.listdir(path):
@@ -38,31 +40,36 @@ class Database:
         return os.listdir(path+user)
     
     def DatabyDate(date,user):
-        with open(path + user + "\\" + date, 'r') as file:
-            reader = csv.reader(file)
-            timings = []
-            temp = []
-            humidity = []
-            moisture = []
+        try:
+            with open(path + user + "\\" + date, 'r') as file:
+                reader = csv.reader(file)
+                timings = []
+                temp = []
+                humidity = []
+                moisture = []
 
-            for row in reader:
-                timings.append(row[0])
-                temp.append(int(row[1]))
-                humidity.append(int(row[2]))
-                moisture.append(int(row[3]))
-            ReadingsNeeded = 24
+                for row in reader:
+                    timings.append(row[0])
+                    temp.append(int(row[1]))
+                    humidity.append(int(row[2]))
+                    moisture.append(int(row[3]))
+                ReadingsNeeded = 24
 
-            DataPacket = {
-                "Date" : date,
-                "Timings": timings[::len(timings)//ReadingsNeeded],
-                "temp" : temp[::len(temp)//ReadingsNeeded],
-                "humidity" : humidity[::len(humidity)//ReadingsNeeded],
-                "moisture" : moisture[::len(moisture)//ReadingsNeeded],
-                "AvgData1": int(sum(temp)/len(temp)) if len(temp) != 0 else -1,
-                "AvgData2" : int(sum(humidity)/len(humidity)) if len(humidity) != 0 else -1,
-                "AvgData3" : int(sum(moisture)/len(moisture)) if len(moisture) != 0 else -1
-            }
-        return DataPacket
+                DataPacket = {
+                    "Date" : date,
+                    "Timings": timings[::len(timings)//ReadingsNeeded],
+                    "temp" : temp[::len(temp)//ReadingsNeeded],
+                    "humidity" : humidity[::len(humidity)//ReadingsNeeded],
+                    "moisture" : moisture[::len(moisture)//ReadingsNeeded],
+                    "AvgData1": int(sum(temp)/len(temp)) if len(temp) != 0 else -1,
+                    "AvgData2" : int(sum(humidity)/len(humidity)) if len(humidity) != 0 else -1,
+                    "AvgData3" : int(sum(moisture)/len(moisture)) if len(moisture) != 0 else -1
+                }
+
+            return DataPacket
+        except Exception as e:
+            print(e)
+            return []
 
 # Server Configurations
 app = Flask(__name__)
@@ -170,6 +177,14 @@ def history():
     user = session["user"]
     data = Database.listData(user)
     return render_template("prevTable.html",Data=data,n=len(data),user=user)
+
+@app.route("/generate_insights", methods=["POST"])
+def generate_insights():
+    print("Got Hit")
+    data = request.json.get('data')
+    print(data)
+    insights = Model.generateInsights(data)
+    return jsonify({"insights": insights})
 
 @app.route("/<date>")
 def PrevData(date):

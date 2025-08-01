@@ -17,11 +17,11 @@ function temp(TemperatureValue) {
   let ele = document.querySelector(".Temperature");
   let con = document.querySelector(".Temperature-condition");
 
-  if (TemperatureValue == -1) {
+  if (TemperatureValue == 0) {
     SuggestionsArr.add("Temperature Sensor is Offline!");
     ele.style.background =
       "radial-gradient( circle farthest-corner at 10% 20%,  rgba(247,87,0,1) 0%, rgba(249,0,0,1) 90.1% )";
-  } else if (TemperatureValue > 24) {
+  } else if (TemperatureValue > 35) {
     ele.style.background =
       "radial-gradient( circle farthest-corner at 10% 20%,  rgba(247,87,0,1) 0%, rgba(249,0,0,1) 90.1% )";
     con.textContent = "High";
@@ -70,7 +70,7 @@ function moist(MoistureValue) {
     SuggestionsArr.add("Moisture Sensor is Offline!");
     ele.style.background =
       "radial-gradient( circle farthest-corner at 10% 20%,  rgba(247,87,0,1) 0%, rgba(249,0,0,1) 90.1% )";
-  } else if (MoistureValue >= 70) {
+  } else if (MoistureValue >= 80) {
     ele.style.background =
       "radial-gradient( circle farthest-corner at 10% 20%,  rgba(247,87,0,1) 0%, rgba(249,0,0,1) 90.1% )";
     con.textContent = "High";
@@ -113,6 +113,8 @@ var data = [
     type: "scatter",
     color: "rgba(0, 0, 255, 1)",
     name: "Moisture",
+    fill: "tozeroy",
+    fillcolor: "rgba(0, 0, 255, 0.3)",
     line: {
       color: "#354cff",
     },
@@ -136,15 +138,22 @@ socket.on("DataRetrieve", function (data) {
   console.log("Server response:", data);
   if (data["user"] == user) {
     data = data["data"];
+
+    let dateParts = data[0].split(" ")[0].split("-");
+    let timeParts = data[0].split(" ")[1].split(":");
+
+    let formattedDate = `${dateParts[0]}-${dateParts[2]}-${dateParts[1]}T${timeParts[0]}:${timeParts[1]}:${timeParts[2]}`;
+
+    let time = new Date(formattedDate).getTime();
+
     let TemperatureValue = data[1];
     let HumidityValue = data[2];
     let MoistureValue = data[3];
+
     temp(TemperatureValue);
     humi(HumidityValue);
     moist(MoistureValue);
-    if (TemperatureValue == -1) {
-      SuggestionsArr.add("System Seems Offline");
-    }
+
     TemperatureValueContainer.textContent = `${TemperatureValue}°C`;
     Temperature.style.background = `conic-gradient(
       #eef3f3 ${TemperatureValue * 3.6}deg,
@@ -154,22 +163,31 @@ socket.on("DataRetrieve", function (data) {
     HumidityValueContainer.textContent = `${HumidityValue}%`;
     Humidity.style.background = `conic-gradient(
       #eef3f3 ${HumidityValue * 3.6}deg,
-      #c9c0bb  ${HumidityValue * 3.6}deg
+      #c9c0bb ${HumidityValue * 3.6}deg
       )`;
 
     MoistureValueContainer.textContent = `${MoistureValue}%`;
     Moisture.style.background = `conic-gradient(
-          #eef3f3 ${MoistureValue * 3.6}deg,
-          #c9c0bb ${MoistureValue * 3.6}deg
-          )`;
+      #eef3f3 ${MoistureValue * 3.6}deg,
+      #c9c0bb ${MoistureValue * 3.6}deg
+      )`;
+
     Plotly.extendTraces(
       "chart",
       {
-        x: [[data[0]], [data[0]], [data[0]]],
+        x: [[time], [time], [time]],
         y: [[TemperatureValue], [HumidityValue], [MoistureValue]],
       },
       [0, 1, 2]
     );
+
+    let update = {
+      xaxis: {
+        type: 'date',
+        range: [time - 30 * 1000, time],
+      },
+    };
+    Plotly.relayout("chart", update);
   }
 });
 
@@ -183,7 +201,7 @@ function updateSuggestions(newSuggestions) {
   suggestionList.forEach((suggestion) => {
     const suggestionText = suggestion.textContent.trim();
     if (!newSuggestions.includes(suggestionText)) {
-      suggestion.style.opacity = 0; // Fade out
+      suggestion.style.opacity = 0;
       setTimeout(() => {
         suggestion.remove();
       }, 500);
@@ -202,7 +220,7 @@ function updateSuggestions(newSuggestions) {
       suggestionContainer.appendChild(newSuggestion);
 
       void newSuggestion.offsetWidth;
-      newSuggestion.style.opacity = 1; // Fade in
+      newSuggestion.style.opacity = 1;
     }
   });
 }
@@ -221,7 +239,7 @@ function fetchRealtimeData() {
     if (count == 5) {
       updateSuggestions(Array.from(SuggestionsArr));
       console.log(SuggestionsArr);
-      SuggestionsArr.clear(); // Clear the Set for new suggestions
+      SuggestionsArr.clear();
       count = 0;
     }
     count++;

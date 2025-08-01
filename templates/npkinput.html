@@ -9,12 +9,12 @@
     <script src="https://cdn.plot.ly/plotly-2.27.1.min.js" charset="utf-8"></script>
     <link rel="stylesheet" href="../static/sidebar.css">
     <style>
-        .main-content{
+        .main-content {
             display: flex;
             justify-content: center;
         }
-        
-        .main-content form{
+
+        .main-content form {
             background-color: rgba(255, 255, 255, 0.553);
             height: max-content;
             padding: 30px;
@@ -22,16 +22,18 @@
             margin: 50px;
         }
 
-        form input, label, select{
+        form input,
+        label,
+        select {
             margin: 2px 0px;
             font-size: 20px;
         }
 
-        select{
+        select {
             background-color: rgb(255, 255, 255);
         }
 
-        form #submit{
+        form #submit {
             background-color: green;
             color: white;
             border: none;
@@ -42,6 +44,7 @@
         }
     </style>
 </head>
+
 <body>
     <div class="sidebar">
         <div class="top">
@@ -71,12 +74,11 @@
                 </a>
                 <span class="tooltip">History</span>
             </li>
-            <li>
-                <a href="/guide">
-                    <i class='bx bx-book-content'></i>
-                    <span class="nav-item">Guide</span>
+            <li> <a href="/inputNPKValues">
+                    <i class="bx bxs-customize"></i>
+                    <span class="nav-item">Input</span>
                 </a>
-                <span class="tooltip">Guide</span>
+                <span class="tooltip">Input</span>
             </li>
             <li>
                 <a href="/logout">
@@ -126,8 +128,9 @@
             <center>
                 <input type="submit" value="Submit Data" id="submit">
             </center>
-            </form>
+        </form>
     </div>
     <script src="../static/script.js"></script>
 </body>
+
 </html>

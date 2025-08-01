@@ -4,7 +4,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="icon" href="/static/images/logo.png">
     <title>Agritech | Dashboard</title>
@@ -50,12 +49,11 @@
                 </a>
                 <span class="tooltip">History</span>
             </li>
-            <li>
-                <a href="/guide">
-                    <i class='bx bx-book-content'></i>
-                    <span class="nav-item">Guide</span>
+            <li> <a href="/inputNPKValues">
+                    <i class="bx bxs-customize"></i>
+                    <span class="nav-item">Input</span>
                 </a>
-                <span class="tooltip">Guide</span>
+                <span class="tooltip">Input</span>
             </li>
             <li>
                 <a href="/logout">
@@ -70,14 +68,13 @@
     <div class="main-content">
         <div class="container">
             <div class="head">
-                <h1>Real Time Analysis:</h1>
+                <h1>Dashboard</h1>
             </div>
             <div class="GraphArea">
                 <div id="chart"></div>
                 <div class="Suggestion-Container">
                     <h1>Suggestions: </h1>
                     <div class="Suggestion-Box">
-                        <li>Put Some Water in the Soil</li>
                     </div>
                     <div class="button-container">
                         <button class="fetchButton">Fetch Real-time Data</button>
@@ -110,11 +107,12 @@
                     </div>
                 </div>
             </div>
-            <div class="result">
+            <div class="Suggestion-Container">
             </div>
         </div>
     </div>
 </body>
 <script src="../static/UltimateSocketScript.js"></script>
 <script src="../static/script.js"></script>
+
 </html>

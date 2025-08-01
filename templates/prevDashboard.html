@@ -4,12 +4,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Agritech | Dashboard</title>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <!-- Important Scipts -->
     <script src="https://cdn.plot.ly/plotly-2.27.1.min.js" charset="utf-8"></script>
 
     <link rel="stylesheet" href="../static/sidebar.css">
+    <style>
+        .loading-spinner {
+            border: 16px solid #f3f3f3;
+            border-top: 16px solid #3498db;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            animation: spin 2s linear infinite;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
 </head>
 
 <body>
@@ -17,7 +37,7 @@
         <div class="top">
             <div class="logo">
                 <p>AgriTech</p>
-                 <img src="../static/images/logo.png" alt="logo"> 
+                <img src="../static/images/logo.png" alt="logo">
             </div>
             <i class="bx bx-menu" id="btn"></i>
         </div>
@@ -35,23 +55,24 @@
                 </a>
                 <span class="tooltip">Dashboard</span>
             </li>
-            <li> <a href="/history">
-                <i class="bx bx-history"></i>
-                <span class="nav-item">History</span>
-            </a>
-            <span class="tooltip">History</span>
-        </li>
+            <li>
+                <a href="/history">
+                    <i class="bx bx-history"></i>
+                    <span class="nav-item">History</span>
+                </a>
+                <span class="tooltip">History</span>
+            </li>
             <li>
                 <a href="/guide">
-                <i class='bx bx-book-content'></i>
-            <span class="nav-item">Guide</span>
-            </a>
-            <span class="tooltip">Guide</span>
-        </li>
+                    <i class='bx bx-book-content'></i>
+                    <span class="nav-item">Guide</span>
+                </a>
+                <span class="tooltip">Guide</span>
+            </li>
             <li>
                 <a href="/logout">
-                    <i class='bx bx-log-out' ></i>
-                <span class="nav-item">Logout</span>
+                    <i class='bx bx-log-out'></i>
+                    <span class="nav-item">Logout</span>
                 </a>
                 <span class="tooltip">Logout</span>
             </li>
@@ -59,11 +80,18 @@
     </div>
 
     <div class="main-content">
-        <div class="container"> 
+        <div class="container">
             <div class="head">
-            <h1>Analysis of {{ date }}:</h1></div>
+                <h1>Analysis of {{ date }}:</h1>
+            </div>
             <div class="GraphArea">
                 <div id="chart"></div>
+                <div class="result">
+                    <h3>Insights: </h3>
+                    <div class="insight">
+                        <div id="loading" class="loading">Generating Insights</div>
+                    </div>
+                </div>
             </div>
             <div class="cards">
                 <div class="Temperature card">
@@ -91,14 +119,24 @@
                     </div>
                 </div>
             </div>
-            <div class="result">
-        </div>
         </div>
     </div>
 </body>
 <script>
     var jsonData = {{ data | tojson | safe }};
+
+    let dotCount = 0;
+    const maxDots = 3;
+    const loadingElement = document.getElementById('loading');
+
+    function updateLoadingText() {
+        dotCount = (dotCount + 1) % (maxDots + 1);
+        loadingElement.textContent = "Generating Insights" + '.'.repeat(dotCount);
+    }
+
+    setInterval(updateLoadingText, 200);
 </script>
 <script src="../static/prevData.js"></script>
 <script src="../static/script.js"></script>
+
 </html>

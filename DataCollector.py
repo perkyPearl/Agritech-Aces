@@ -4,30 +4,37 @@ import time
 from datetime import datetime
 import os
 
-userId = "pearl"
+userId = input("User: ")
 
 csv_filepath = os.getcwd() + "\\DataBase\\" + userId + "\\" + str(datetime.today().date()) + '.csv'
 
-ser = serial.Serial('COM3', 9600, serial.EIGHTBITS)
+ser = serial.Serial('COM5', 9600, serial.EIGHTBITS)
+try:
+    while True:
+        try:
+            line = ser.readline().decode("utf-8").rstrip()
 
-while True:
-    try:
-        data = float(ser.readline().decode("utf-8"))
-        timestamp = time.strftime('%Y-%d-%m %H:%M:%S')
+            if line:
+                data = line.split()
 
-        data = 100 - abs(((data - 350)/(350-750))*100)
+                if len(data) == 3:
+                    item1 = data[0]
+                    item2 = data[1]
+                    item3 = data[2]
 
-        if data > 100:
-            data = 100
-        if data < 0:
-            data = 0
+                    timestamp = time.strftime('%Y-%d-%m %H:%M:%S')
+                    
+                    with open(csv_filepath, 'a', newline='') as csv_file:
+                        csv_writer = csv.writer(csv_file)
+                        csv_writer.writerow([timestamp, item1, item2, item3])
+                    
+                    print(f"{timestamp}: Item1: {item1}, Item2: {item2}, Item3: {item3}")
+                        
+                time.sleep(1)
 
-        with open(csv_filepath, 'a', newline='') as csv_file:
-            csv_writer = csv.writer(csv_file)
-            csv_writer.writerow([timestamp, data])
-            print(f"{timestamp}: {data}")
+        except Exception as e:
+            print(e)
 
-        time.sleep(.001)
-
-    except Exception as e:
-        print(e)
+finally:
+    if ser.is_open:
+        ser.close()

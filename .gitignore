@@ -1,1 +1,5 @@
 /DataBase/*
+__pycache__/
+.idea/
+venv/
+.env

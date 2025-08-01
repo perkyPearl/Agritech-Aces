@@ -4,3 +4,6 @@ Flask-Cors
 pymongo
 Flask-PyMongo
 pyserial
+pyFirmata
+google-generativeai
+python-dotenv
